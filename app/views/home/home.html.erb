@@ -1,0 +1,5 @@
+<%= form_tag(result_path) do %>
+    <tr>Ingresar ciudad seguido de una coma por el pais para tener una mejor precision</tr>
+    <%= text_field_tag :location %>
+    <%= submit_tag 'Buscar', :class => "btn btn-primary btn-md" %>
+<% end %>
