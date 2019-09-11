@@ -8,9 +8,9 @@
     <p></p>
     <p></p>
     <div>
-        <%= raw @rate[@opcion] %>
+        <%= raw @rate %>
     </div>
-    <button id="next" onclick="myFunction()">Next</button>
+    <%= button_to "Next", result_path(:location => @city, :card => (@opcion+1))%>
 
     
 </div>

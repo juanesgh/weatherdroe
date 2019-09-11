@@ -1,8 +1,8 @@
 class ResultController < ApplicationController
     def product
-        city = params[:location]
+        @city = params[:location]
         loc = ''
-        val = Geocoder.search(city)
+        val = Geocoder.search(@city)
         if val[0] != nil
             loc = val.first.city + ',' + val.first.country
             loc = loc.downcase
@@ -30,7 +30,13 @@ class ResultController < ApplicationController
         @temp1 = @weather["main"] #
         @temp = @temp1["temp"].to_i - 273 #temperatura
 
-        @opcion = 0#sumar 7 para siguiente producto
+        @opcion = 0 #sumar 7 para siguiente producto
+        if params[:card].to_i
+            @opcion = params[:card].to_i
+            if @opcion == 5
+                @opcion = 0
+            end
+        end 
         require 'openssl'
         require 'open-uri'
         urls = ''
@@ -69,7 +75,7 @@ class ResultController < ApplicationController
                 s.remove
             end
         end
-        @rate = ra
+        @rate = ra[@opcion]
     end
     
 end
